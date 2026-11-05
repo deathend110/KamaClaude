@@ -17,8 +17,9 @@ dependencies = [
 
 # 安装后可在 PATH 中执行的入口：`kama` / `kama-core` / `kama-tui`
 [project.scripts]
-kama = "kama_claude.cli.main:main"
-kama-core = "kama_claude.core.app:run"
+# cli.main:run; core.app:run;是两个独立进程，各自独立，互不影响
+kama = "kama_claude.cli.main:main" # kama 是uv run kama ping 中的kama命令，kama后面的命令是子命令，是kama_claude.cli.main:main函数的参数
+kama-core = "kama_claude.core.app:run" # 同理，kama-core是uv run kama-core ping中的kama-core命令，这个run函数没有参数，直接执行
 kama-tui = "kama_claude.tui.__main__:main"
 
 # ---- Hatch：打 wheel 时从 src 布局收录包 ----
