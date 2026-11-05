@@ -46,6 +46,7 @@ class SocketServer:
         except (ConnectionRefusedError, OSError):
             pass
 
+        # 先启动监听，随后每次连接到来时由 asyncio 创建处理 Task；这里的 await 等待监听启动完成。
         self._server = await asyncio.start_server(
             self._handle_connection,
             host=self._host,
