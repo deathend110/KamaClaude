@@ -3,8 +3,8 @@ from __future__ import annotations
 import argparse
 import sys
 
-from kama_claude.cli.commands.ping import cmd_ping
 from kama_claude.cli.commands.echo import cmd_echo
+from kama_claude.cli.commands.ping import cmd_ping
 from kama_claude.cli.commands.version import cmd_version
 from kama_claude.core.config import get_config
 from kama_claude.core.logging_setup import setup_logging
