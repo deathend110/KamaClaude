@@ -4,6 +4,7 @@ import argparse
 import sys
 
 from kama_claude.cli.commands.ping import cmd_ping
+from kama_claude.cli.commands.echo import cmd_echo
 from kama_claude.cli.commands.version import cmd_version
 from kama_claude.core.config import get_config
 from kama_claude.core.logging_setup import setup_logging
@@ -13,7 +14,8 @@ from kama_claude.core.logging_setup import setup_logging
 def main() -> None:
     # 一级解析器，kama是help中出现的命令名，如下：
     # usage: kama [-h] [--version] {ping,echo}
-    # 实际上uv run kama 的kama能调用这个main文件来自pyproject.toml中的 kama = "kama_claude.cli.main:main"
+    # 实际上uv run kama 的kama能调用这个main文件来自:
+    # pyproject.toml中的 kama = "kama_claude.cli.main:main"
     parser = argparse.ArgumentParser(prog="kama", description="KamaClaude CLI")
 
     # 声明一个参数：--version，这是主命令kama的选项
@@ -40,6 +42,10 @@ def main() -> None:
         config = get_config()
         setup_logging(config)
         cmd_ping(config)
+    elif args.command == "echo":
+        config = get_config()
+        setup_logging(config)
+        cmd_echo(config, args.text)
     else:
         parser.print_help()
         sys.exit(1)
