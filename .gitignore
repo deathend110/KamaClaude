@@ -18,3 +18,8 @@ uv.lock
 
 # 提示词文件忽略
 prompt.md
+
+#  图片忽略
+*.png
+*.jpg
+*.jpeg
